@@ -1,5 +1,7 @@
 # MyLeague
 
+This project implements a set of entities to simulate a sport score information system, in JAVA (https://www.java.com). The system relies on a Vert.x server(https://vertx.io/) and an API (following MVC pattern design) to comunicate with the webapp, developed with bootstrap 4 (https://getbootstrap.com/). The data is stored in a MySQL Database (https://www.mysql.com/). The project was implemented with the Apache NetBeans IDE (https://netbeans.apache.org/).
+
 ## Requirements
 
 - Database: Local instance of MySQL Server running (tested with 8.0.19 - Homebrew).
