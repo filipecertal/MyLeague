@@ -16,7 +16,7 @@ import java.util.Map;
 
 /**
  *
- * @author Maria Carlão <maria.clcarlao@gmail.com>
+ * @author Filipe Certal <filipe.certal@gmail.com>
  */
 public class JogosController {
     

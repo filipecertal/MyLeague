@@ -9,7 +9,7 @@ import com.myleague.core.Database;
 
 /**
  *
- * @author Maria Carlão <maria.clcarlao@gmail.com>
+ * @author Filipe Certal <filipe.certal@gmail.com>
  */
 public abstract class AbstractModel {
     

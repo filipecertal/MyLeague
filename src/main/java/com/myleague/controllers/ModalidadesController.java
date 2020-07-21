@@ -5,13 +5,11 @@
  */
 package com.myleague.controllers;
 
-import com.myleague.models.Competicao;
 import com.myleague.models.Modalidade;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import io.vertx.core.MultiMap;
 import io.vertx.ext.web.RoutingContext;
-import io.vertx.ext.web.Session;
 import java.io.OutputStreamWriter;
 import java.io.StringWriter;
 import java.io.Writer;
@@ -20,7 +18,7 @@ import java.util.Map;
 
 /**
  *
- * @author Maria Carlão <maria.clcarlao@gmail.com>
+ * @author Filipe Certal <filipe.certal@gmail.com>
  */
 public class ModalidadesController {
     

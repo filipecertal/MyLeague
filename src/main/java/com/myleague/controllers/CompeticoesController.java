@@ -11,23 +11,19 @@ import com.myleague.models.Equipa;
 import com.myleague.models.Modalidade;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
-import io.vertx.core.MultiMap;
-import io.vertx.core.json.JsonObject;
 import io.vertx.ext.web.RoutingContext;
 import java.io.OutputStreamWriter;
 import java.io.StringWriter;
 import java.io.Writer;
-import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 
 /**
  *
- * @author Maria Carlão <maria.clcarlao@gmail.com>
+ * @author Filipe Certal <filipe.certal@gmail.com>
  */
 public class CompeticoesController {
     

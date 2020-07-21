@@ -7,7 +7,6 @@ package com.myleague.controllers;
 
 import com.myleague.models.Equipa;
 import com.myleague.models.Jogador;
-import com.myleague.models.Modalidade;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import io.vertx.core.MultiMap;
@@ -22,7 +21,7 @@ import java.util.Map;
 
 /**
  *
- * @author Maria Carlão <maria.clcarlao@gmail.com>
+ * @author Filipe Certal <filipe.certal@gmail.com>
  */
 public class JogadoresController {
     

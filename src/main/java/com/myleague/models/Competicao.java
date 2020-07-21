@@ -13,7 +13,7 @@ import java.util.List;
 
 /**
  *
- * @author Maria Carlão <maria.clcarlao@gmail.com>
+ * @author Filipe Certal <filipe.certal@gmail.com>
  */
 public class Competicao extends AbstractModel {
 
