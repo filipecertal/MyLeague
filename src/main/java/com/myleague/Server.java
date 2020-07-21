@@ -2,10 +2,8 @@ package com.myleague;
 
 import com.myleague.controllers.CompeticoesController;
 import com.myleague.controllers.EquipasController;
-import com.myleague.controllers.GruposController;
 import com.myleague.controllers.HomepageController;
 import com.myleague.controllers.JogadoresController;
-import com.myleague.controllers.JogosController;
 import com.myleague.controllers.ModalidadesController;
 import freemarker.cache.FileTemplateLoader;
 import freemarker.cache.TemplateLoader;
@@ -13,16 +11,12 @@ import freemarker.template.Configuration;
 import freemarker.template.TemplateExceptionHandler;
 import io.vertx.core.Vertx;
 import io.vertx.core.http.HttpServer;
-import io.vertx.core.http.HttpServerResponse;
 import io.vertx.ext.web.Router;
-import io.vertx.ext.web.templ.freemarker.FreeMarkerTemplateEngine;
 import io.vertx.core.http.HttpMethod;
 import io.vertx.ext.web.handler.BodyHandler;
 import io.vertx.ext.web.handler.StaticHandler;
 import java.io.File;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 
 /**
