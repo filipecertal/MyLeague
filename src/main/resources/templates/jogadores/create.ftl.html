@@ -1,0 +1,62 @@
+<#include "/header.ftl.html">
+<#include "/navigation.ftl.html">
+
+<div class="main-page">
+	<div class="jumbotron">
+		<div class="container">
+			<h1>Novo Jogador</h1>
+			<p>Gestão de jogadores</p>	
+		</div>
+	</div>
+	<div class="container">
+
+		<#if display_errors??>
+			<#assign errors = display_errors?eval>
+		</#if>
+
+		<form method="POST" action="/jogadores/add" class="needs-validation" novalidate>
+
+			<div class="form-group">
+				<label for="nome">Nome</label>
+				<input type="text" class="form-control <#if errors?? && errors.nome??>is-invalid</#if>" id="nome" name="nome" <#if errors?? && errors.designacao??>value=${errors.nome.valor}</#if> placeholder="Insira o nome do/a jogador/a">
+				
+				<#if errors?? && errors.nome??>
+				<div class="invalid-feedback">
+					${errors.nome.mensagem}
+				</div>
+				</#if>
+
+			</div>
+
+			<div class="form-group">
+				<label for="equipa">Equipa</label>
+				<select  class="form-control <#if errors?? && errors.equipa??>is-invalid</#if>" name="equipa">
+					<option disabled selected>Selecione uma equipa</option>
+
+					<#list equipas?eval as equipa>
+					<option value="${ equipa.id }" >${ equipa.nome }</option>
+					</#list>
+
+				</select>
+
+				<#if errors?? && errors.equipa??>
+				<div class="invalid-feedback">
+					${errors.equipa.mensagem}
+				</div>
+				</#if>
+
+			</div>
+
+			
+			<div class="btn-group">
+				<input type="submit" class="btn btn-outline-secondary" value="Adicionar"></input>
+				<a class="btn btn-outline-secondary" href="javascript: history.go(-1)">Voltar</a>
+			</div>
+
+		</form>
+
+	</div>
+</div>
+
+
+<#include "/footer.ftl.html">

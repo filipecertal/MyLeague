@@ -1,0 +1,80 @@
+<#include "/header.ftl.html">
+<#include "/navigation.ftl.html">
+
+<div class="main-page">
+	<div class="jumbotron">
+		<div class="container">
+			<h1>Jogadores</h1>
+			<p>Gestão de jogadores</p>	
+		</div>
+	</div>
+	<div class="container">
+
+		<div id="message"></div>
+
+		<table class="table table-hover">
+			<thead class="thead-dark">
+				<tr class="row">
+					<th scope="col" class="col-1">#</th>
+					<th scope="col" class="col-3">Nome</th>
+					<th scope="col" class="col-3">Equipa</th>	
+					<th scope="col" class="col"></th>
+				</tr>
+			</thead>
+			<tbody>
+				<#list jogadores?eval as jogador>
+				<tr class="row">
+					<th scope="row" class="col-1">${jogador.id}</th>
+					<td class="col-3">${jogador.nome}</td>
+					<td class="col-3"><a href="/equipas/${jogador.equipa.id}">${jogador.equipa.nome}</a></td>
+					<td class="col">
+						
+						<div class="btn-group">
+						<a class="btn btn-outline-secondary" href="/jogadores/${jogador.id}">Ver</a>
+						<a class="btn btn-outline-secondary" href="/jogadores/${jogador.id}/edit">Editar</a>
+						<a class="btn btn-outline-secondary" href="/jogadores/${jogador.id}/delete">Remover</a>
+						</div>
+
+					</td>
+				</tr>
+				</#list>
+
+			</tbody>
+		</table>
+
+		<a class="btn btn-outline-secondary" href="/jogadores/add">Adicionar</a>
+
+	</div>
+</div>
+
+<script type="text/javascript">
+
+	var entries = new URLSearchParams(window.location.search).entries();
+
+	for(pair of entries) {
+
+		if (pair[0] == 'created') {
+			
+			document.getElementById('message').innerHTML = '<div class="alert alert-success" role="alert">Jogador \"' + pair[1] + '\" adicionado com sucesso!<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>';
+		}
+
+		if (pair[0] == 'updated') {
+			
+			document.getElementById('message').innerHTML = '<div class="alert alert-success" role="alert">Jogador \"' + pair[1] + '\" atualizado com sucesso!<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>';
+		}
+
+		if (pair[0] == 'deleted') {
+			
+			document.getElementById('message').innerHTML = '<div class="alert alert-success" role="alert">Jogador \"' + pair[1] + '\" removido com sucesso!<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>';
+		}
+
+		if (pair[0] == 'error') {
+			
+			document.getElementById('message').innerHTML = '<div class="alert alert-danger" role="alert">' + pair[1] + '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>';
+		}
+	}
+
+</script>
+
+
+<#include "/footer.ftl.html">

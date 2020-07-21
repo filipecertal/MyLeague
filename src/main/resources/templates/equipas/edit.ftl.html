@@ -1,0 +1,106 @@
+<#include "/header.ftl.html">
+<#include "/navigation.ftl.html">
+
+<div class="main-page">
+	<div class="jumbotron">
+		<div class="container">
+			<h1>Editar ${equipa?eval.nome}</h1>
+			<p>Gestão de equipas desportivas</p>	
+		</div>
+	</div>
+	<div class="container">
+
+		<#if display_errors??>
+			<#assign errors = display_errors?eval>
+		</#if>
+
+		<form method="POST" action="/equipas/${equipa?eval.id}/edit">
+
+			<div class="form-group">
+				<label for="nome">Nome da equipa</label>
+				<input type="text" class="form-control <#if errors?? && errors.nome??>is-invalid</#if>" id="nome" name="nome" placeholder="Insira o nome da equipa" <#if errors?? && errors.nome??>value=${errors.nome.valor}<#else> value="${equipa?eval.nome}" </#if> >
+
+				<#if errors?? && errors.nome??>
+				<div class="invalid-feedback">
+					${errors.nome.mensagem}
+				</div>
+				</#if>
+
+			</div>
+
+			<div class="form-group">
+				<label for="treinador">Nome do treinador</label>
+				<input type="text" class="form-control <#if errors?? && errors.treinador??>is-invalid</#if>" id="treinador" name="treinador" placeholder="Insira o nome do treinador" <#if errors?? && errors.treinador??>value=${errors.treinador.valor}<#else> value="${equipa?eval.treinador}" </#if> >
+
+				<#if errors?? && errors.treinador??>
+				<div class="invalid-feedback">
+					${errors.treinador.mensagem}
+				</div>
+				</#if>
+
+			</div>
+
+			<div class="form-group">
+				<label for="modalidade">Modalidade</label>
+				<select  class="form-control <#if errors?? && errors.modalidade??>is-invalid</#if>" name="modalidade">
+
+					<#list modalidades?eval as modalidade>
+					<option value="${ modalidade.id }" <#if modalidade.id == equipa?eval.modalidade.id>selected</#if>>${ modalidade.designacao }</option>
+					</#list>
+
+				</select>
+
+				<#if errors?? && errors.modalidade??>
+				<div class="invalid-feedback">
+					${errors.modalidade.mensagem}
+				</div>
+				</#if>
+
+			</div>
+
+
+			
+			<div class="btn-group">
+				<button type="submit" class="btn btn-outline-secondary" href="/equipas/${equipa?eval.id}/edit">Atualizar</button>
+				<a class="btn btn-outline-secondary" href="javascript: history.go(-1)">Voltar</a>
+			</div>
+
+		</form>
+
+		<div class="jogadores mt-5"> 
+
+			<h3>Jogadores</h3>
+
+			<table class="table table-hover">
+				<thead class="thead-dark">
+					<tr class="row">
+						<th scope="col" class="col-1">#</th>
+						<th scope="col" class="col-3">Nome</th>	
+						<th scope="col" class="col"></th>
+					</tr>
+				</thead>
+				<tbody>
+					<#list jogadores?eval as jogador>
+					<tr class="row">
+						<th scope="row" class="col-1">${jogador.id}</th>
+						<td class="col-3">${jogador.nome}</td>
+						<td class="col">
+							
+							<div class="btn-group">
+							<a class="btn btn-outline-secondary" href="/jogadores/${jogador.id}">Ver</a>
+							<a class="btn btn-outline-secondary" href="/jogadores/${jogador.id}/edit">Editar</a>
+							<a class="btn btn-outline-secondary" href="/jogadores/${jogador.id}/delete">Remover</a>
+							</div>
+
+						</td>
+					</tr>
+					</#list>
+
+				</tbody>
+			</table>
+		</div>
+
+	</div>
+</div>
+
+<#include "/footer.ftl.html">

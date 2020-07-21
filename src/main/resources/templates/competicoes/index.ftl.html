@@ -1,0 +1,83 @@
+<#include "/header.ftl.html">
+<#include "/navigation.ftl.html">
+
+<div class="main-page">
+	<div class="jumbotron">
+		<div class="container">
+			<h1>Competições</h1>
+			<p>Gestão de competições desportivas</p>	
+		</div>
+	</div>
+	<div class="container">
+
+		<div id="message"></div>
+
+		<table class="table table-hover">
+			<thead class="thead-dark">
+				<tr class="row">
+					<th scope="col" class="col-3">Nome</th>
+					<th scope="col" class="col-2">Tipo</th>
+					<th scope="col" class="col-2">Modalidade</th>
+					<th scope="col" class="col-2">Vencedora</th>
+					<th scope="col" class="col"></th>
+				</tr>
+			</thead>
+			<tbody>
+				<#list competicoes?eval as competicao>
+				<tr class="row">
+					<td class="col-3">${competicao.nome}</td>
+					<td class="col-2">${competicao.tipo}</td>
+					<td class="col-2">${competicao.modalidade}</td>
+					<td class="col-2">${competicao.vencedora}</td>
+
+					<td class="col">
+						
+						<div class="btn-group">
+						<a class="btn btn-outline-secondary" href="/competicoes/${competicao.id}">Ver</a>
+						<a class="btn btn-outline-secondary" href="/competicoes/${competicao.id}/edit">Editar</a>
+						<a class="btn btn-outline-secondary" href="/competicoes/${competicao.id}/delete">Remover</a>
+						</div>
+
+					</td>
+				</tr>
+				</#list>
+
+			</tbody>
+		</table>
+
+		<a class="btn btn-outline-secondary" href="/competicoes/add">Adicionar</a>
+
+	</div>
+</div>
+
+<script type="text/javascript">
+
+	var entries = new URLSearchParams(window.location.search).entries();
+
+	for(pair of entries) {
+
+		if (pair[0] == 'created') {
+			
+			document.getElementById('message').innerHTML = '<div class="alert alert-success" role="alert">Competição \"' + pair[1] + '\" criada com sucesso!<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>';
+		}
+
+		if (pair[0] == 'updated') {
+			
+			document.getElementById('message').innerHTML = '<div class="alert alert-success" role="alert">Competição \"' + pair[1] + '\" atualizada com sucesso!<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>';
+		}
+
+		if (pair[0] == 'deleted') {
+			
+			document.getElementById('message').innerHTML = '<div class="alert alert-success" role="alert">Competição \"' + pair[1] + '\" removida com sucesso!<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>';
+		}
+
+		if (pair[0] == 'error') {
+			
+			document.getElementById('message').innerHTML = '<div class="alert alert-danger" role="alert">' + pair[1] + '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>';
+		}
+	}
+
+</script>
+
+
+<#include "/footer.ftl.html">

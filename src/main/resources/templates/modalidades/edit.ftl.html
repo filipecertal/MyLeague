@@ -1,0 +1,42 @@
+<#include "/header.ftl.html">
+<#include "/navigation.ftl.html">
+
+<div class="main-page">
+	<div class="jumbotron">
+		<div class="container">
+			<h1>Editar ${modalidade?eval.designacao}</h1>
+			<p>Gestão de modalidades desportivas</p>	
+		</div>
+	</div>
+	<div class="container">
+
+		<#if display_errors??>
+			<#assign errors = display_errors?eval>
+		</#if>
+
+		<form method="POST" action="/modalidades/${modalidade?eval.id}/edit">
+
+			<div class="form-group">
+				<label for="designacao">Designação</label>
+				<input type="text" class="form-control <#if errors?? && errors.designacao??>is-invalid</#if>" id="designacao" name="designacao" placeholder="Insira uma designação" <#if errors?? && errors.designacao??>value=${errors.designacao.valor}<#else> value="${modalidade?eval.designacao}" </#if> >
+
+				<#if errors?? && errors.designacao??>
+				<div class="invalid-feedback">
+					${errors.designacao.mensagem}
+				</div>
+				</#if>
+
+			</div>
+			
+			<div class="btn-group">
+				<button type="submit" class="btn btn-outline-secondary" href="/modalidades/${modalidade?eval.id}/edit">Atualizar</button>
+				<a class="btn btn-outline-secondary" href="javascript: history.go(-1)">Voltar</a>
+			</div>
+
+		</form>
+
+	</div>
+</div>
+
+
+<#include "/footer.ftl.html">

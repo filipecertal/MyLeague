@@ -1,0 +1,82 @@
+<#include "/header.ftl.html">
+<#include "/navigation.ftl.html">
+
+<div class="main-page">
+	<div class="jumbotron">
+		<div class="container">
+			<h1>${equipa?eval.nome}</h1>
+			<p>Gestão de equipas desportivas</p>	
+		</div>
+	</div>
+	<div class="container">
+
+		<form>
+
+			<div class="form-group">
+				<label for="nome">Nome</label>
+				<input type="text" class="form-control" id="nome" name="nome" placeholder="Insira o nome da equipa" value="${equipa?eval.nome}" disabled>
+
+			</div>
+
+			<div class="form-group">
+				<label for="treinador">Nome</label>
+				<input type="text" class="form-control" id="treinador" name="treinador" placeholder="Insira o nome do treinador" value="${equipa?eval.treinador}" disabled>
+
+			</div>
+
+			<div class="form-group">
+				<label for="modalidade">Nome</label>
+				<input type="text" class="form-control" id="modalidade" name="modalidade" placeholder="Insira a modalidade equipa" value="${equipa?eval.modalidade.designacao}" disabled>
+
+			</div>
+			
+			<div class="btn-group">
+				<a class="btn btn-outline-secondary" href="/equipas/${equipa?eval.id}/edit">Editar</a>
+				<a class="btn btn-outline-secondary" href="/equipas/${equipa?eval.id}/delete">Remover</a>
+				<a class="btn btn-outline-secondary" href="javascript: history.go(-1)">Voltar</a>
+			</div>
+
+		</form>
+
+		<div class="jogadores mt-5"> 
+
+			<h3>Jogadores</h3>
+
+			<table class="table table-hover">
+				<thead class="thead-dark">
+					<tr class="row">
+						<th scope="col" class="col-1">#</th>
+						<th scope="col" class="col-3">Nome</th>	
+						<th scope="col" class="col"></th>
+					</tr>
+				</thead>
+				<tbody>
+					<#list jogadores?eval as jogador>
+					<tr class="row">
+						<th scope="row" class="col-1">${jogador.id}</th>
+						<td class="col-3">${jogador.nome}</td>
+						<td class="col">
+							
+							<div class="btn-group">
+							<a class="btn btn-outline-secondary" href="/jogadores/${jogador.id}">Ver</a>
+							<a class="btn btn-outline-secondary" href="/jogadores/${jogador.id}/edit">Editar</a>
+							<a class="btn btn-outline-secondary" href="/jogadores/${jogador.id}/delete">Remover</a>
+							</div>
+
+						</td>
+					</tr>
+					</#list>
+
+				</tbody>
+			</table>
+
+
+			<a class="btn btn-outline-secondary" href="/jogadores/add">Adicionar</a>
+		</div>
+
+
+	</div>
+</div>
+
+
+<#include "/footer.ftl.html">

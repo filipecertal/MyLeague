@@ -1,0 +1,74 @@
+<#include "/header.ftl.html">
+<#include "/navigation.ftl.html">
+
+<div class="main-page">
+	<div class="jumbotron">
+		<div class="container">
+			<h1>Nova Equipa</h1>
+			<p>Gestão de equipas desportivas</p>	
+		</div>
+	</div>
+	<div class="container">
+
+		<#if display_errors??>
+			<#assign errors = display_errors?eval>
+		</#if>
+
+		<form method="POST" action="/equipas/add" class="needs-validation" novalidate>
+
+			<div class="form-group">
+				<label for="nome">Nome da equipa</label>
+				<input type="text" class="form-control <#if errors?? && errors.nome??>is-invalid</#if>" id="nome" name="nome" <#if errors?? && errors.designacao??>value=${errors.nome.valor}</#if> placeholder="Insira o nome da equipa">
+				
+				<#if errors?? && errors.nome??>
+				<div class="invalid-feedback">
+					${errors.nome.mensagem}
+				</div>
+				</#if>
+
+			</div>
+
+			<div class="form-group">
+				<label for="treinador">Nome do treinador</label>
+				<input type="text" class="form-control <#if errors?? && errors.treinador??>is-invalid</#if>" id="treinador" name="treinador" <#if errors?? && errors.treinador??>value=${errors.treinador.valor}</#if> placeholder="Insira o nome do treinador">
+				
+				<#if errors?? && errors.treinador??>
+				<div class="invalid-feedback">
+					${errors.treinador.mensagem}
+				</div>
+				</#if>
+
+			</div>
+
+			<div class="form-group">
+				<label for="modalidade">Modalidade</label>
+				<select  class="form-control <#if errors?? && errors.modalidade??>is-invalid</#if>" name="modalidade">
+					<option disabled selected>Selecione uma modalidade</option>
+
+					<#list modalidades?eval as modalidade>
+					<option value="${ modalidade.id }" >${ modalidade.designacao }</option>
+					</#list>
+
+				</select>
+
+				<#if errors?? && errors.modalidade??>
+				<div class="invalid-feedback">
+					${errors.modalidade.mensagem}
+				</div>
+				</#if>
+
+			</div>
+
+			
+			<div class="btn-group">
+				<input type="submit" class="btn btn-outline-secondary" value="Adicionar"></input>
+				<a class="btn btn-outline-secondary" href="javascript: history.go(-1)">Voltar</a>
+			</div>
+
+		</form>
+
+	</div>
+</div>
+
+
+<#include "/footer.ftl.html">

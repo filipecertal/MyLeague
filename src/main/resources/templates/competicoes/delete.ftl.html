@@ -1,0 +1,28 @@
+<#include "/header.ftl.html">
+<#include "/navigation.ftl.html">
+
+<div class="main-page">
+	<div class="jumbotron">
+		<div class="container">
+			<h1>Remover ${competicao?eval.nome}</h1>
+			<p>Gestão de competições desportivas</p>	
+		</div>
+	</div>
+	<div class="container">
+
+		<h4>Deseja remover a competição '${competicao?eval.nome}'?</h4>
+
+		<form method="POST" action="/competicoes/${competicao?eval.id}/delete">
+			
+			<div class="btn-group">
+				<button type="submit" class="btn btn-outline-secondary" href="/competicoes/${competicao?eval.id}/edit">Remover</button>
+				<a class="btn btn-outline-secondary" href="javascript: history.go(-1)">Voltar</a>
+			</div>
+
+		</form>
+
+	</div>
+</div>
+
+
+<#include "/footer.ftl.html">

@@ -1,0 +1,101 @@
+<#include "/header.ftl.html">
+<#include "/navigation.ftl.html">
+
+<div class="main-page">
+    <div class="jumbotron">
+        <div class="container">
+            <h1>Bem vindo/a</h1>
+            <p>Bem vindo ao <strong>S</strong>istema de <strong>I</strong>nformação e <strong>G</strong>estão de <strong>C</strong>ompetições desportivas (<strong>SIGCO</strong>)</p>    
+        </div>
+    </div>
+    <div class="container">
+
+
+	<div class="adecorrer"> 
+
+    	<h3>Competições a decorrer</h3>
+
+
+    	<table class="table table-hover">
+			<thead class="thead-dark">
+				<tr class="row">
+					<th scope="col" class="col-3">Nome</th>
+					<th scope="col" class="col-2">Tipo</th>
+					<th scope="col" class="col-2">Modalidade</th>
+					<th scope="col" class="col-2">Vencedora</th>
+					<th scope="col" class="col"></th>
+				</tr>
+			</thead>
+			<tbody>
+				<#list adecorrer?eval as competicao>
+				<tr class="row">
+					<td class="col-3">${competicao.nome}</td>
+					<td class="col-2">${competicao.tipo}</td>
+					<td class="col-2">${competicao.modalidade}</td>
+					<td class="col-2">${competicao.vencedora}</td>
+
+					<td class="col">
+						
+						<div class="btn-group">
+						<a class="btn btn-outline-secondary" href="/competicoes/${competicao.id}">Ver</a>
+						<a class="btn btn-outline-secondary" href="/competicoes/${competicao.id}/edit">Editar</a>
+						<a class="btn btn-outline-secondary" href="/competicoes/${competicao.id}/delete">Remover</a>
+						</div>
+
+					</td>
+				</tr>
+				</#list>
+
+			</tbody>
+		</table>
+
+	</div>
+
+	<div class="terminadas mt-5"> 
+
+    	<h3>Competições a terminadas</h3>
+
+
+    	<table class="table table-hover">
+			<thead class="thead-dark">
+				<tr class="row">
+					<th scope="col" class="col-3">Nome</th>
+					<th scope="col" class="col-2">Tipo</th>
+					<th scope="col" class="col-2">Modalidade</th>
+					<th scope="col" class="col-2">Vencedora</th>
+					<th scope="col" class="col"></th>
+				</tr>
+			</thead>
+			<tbody>
+				<#list terminadas?eval as competicao>
+				<tr class="row">
+					<td class="col-3">${competicao.nome}</td>
+					<td class="col-2">${competicao.tipo}</td>
+					<td class="col-2">${competicao.modalidade}</td>
+					<td class="col-2">${competicao.vencedora}</td>
+
+					<td class="col">
+						
+						<div class="btn-group">
+						<a class="btn btn-outline-secondary" href="/competicoes/${competicao.id}">Ver</a>
+						<a class="btn btn-outline-secondary" href="/competicoes/${competicao.id}/edit">Editar</a>
+						<a class="btn btn-outline-secondary" href="/competicoes/${competicao.id}/delete">Remover</a>
+						</div>
+
+					</td>
+				</tr>
+				</#list>
+
+			</tbody>
+		</table>
+
+	</div>
+
+
+
+    </div>
+</div>
+
+
+
+<#include "/footer.ftl.html">

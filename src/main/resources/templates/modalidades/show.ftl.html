@@ -1,0 +1,35 @@
+<#include "/header.ftl.html">
+<#include "/navigation.ftl.html">
+
+<div class="main-page">
+	<div class="jumbotron">
+		<div class="container">
+			<h1>${modalidade?eval.designacao}</h1>
+			<p>Gestão de modalidades desportivas</p>	
+		</div>
+	</div>
+	<div class="container">
+
+		<form>
+
+			<div class="form-group">
+				<label for="designacao">Designação</label>
+				<input type="text" class="form-control" id="designacao" name="designacao" placeholder="Insira uma designação" value="${modalidade?eval.designacao}" disabled>
+
+			</div>
+			
+			<div class="btn-group">
+				<a class="btn btn-outline-secondary" href="/modalidades/${modalidade?eval.id}/edit">Editar</a>
+				<a class="btn btn-outline-secondary" href="/modalidades/${modalidade?eval.id}/delete">Remover</a>
+				<a class="btn btn-outline-secondary" href="javascript: history.go(-1)">Voltar</a>
+			</div>
+
+		</form>
+
+
+
+	</div>
+</div>
+
+
+<#include "/footer.ftl.html">

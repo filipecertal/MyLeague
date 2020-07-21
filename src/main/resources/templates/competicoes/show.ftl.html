@@ -1,0 +1,139 @@
+<#include "/header.ftl.html">
+<#include "/navigation.ftl.html">
+
+<div class="main-page">
+	<div class="jumbotron">
+		<div class="container">
+			<h1>${competicao?eval.nome}</h1>
+			<p>Gestão de competições desportivas</p>	
+		</div>
+	</div>
+	<div class="container">
+
+		<form>
+
+			<div class="form-group">
+				<label for="nome">Nome da competição</label>
+				<input type="text" class="form-control" id="nome" name="nome" placeholder="Insira o nome da competição" value="${competicao?eval.nome}" disabled>
+
+			</div>
+
+
+			<div class="form-group">
+				<label for="tipo">Tipo de competição</label>
+
+				<div class="radio">
+					<label class="radio-inline"><input type="radio" value="0" name="tipo" disabled <#if competicao?eval.tipo=='Campeonato'>checked</#if> >Campeonato</label>
+				</div>
+				<div class="radio">
+					<label class="radio-inline"><input type="radio" value="1" name="tipo" disabled <#if competicao?eval.tipo=='Torneio'>checked</#if>>Torneio</label>
+				</div>
+				<div class="radio ">
+					<label class="radio-inline"><input type="radio" value="2" name="tipo" disabled <#if competicao?eval.tipo=='Eliminatória'>checked</#if>>Eliminatória</label>
+				</div>
+				
+
+				<#if errors?? && errors.tipo??>
+				<div class="invalid-feedback">
+					${errors.tipo.mensagem}
+				</div>
+				</#if>
+
+			</div>
+
+			<div class="form-group">
+				<label for="recinto">Recinto</label>
+				<input type="text" class="form-control <#if errors?? && errors.recinto??>is-invalid</#if>" id="recinto" name="recinto" <#if errors?? && errors.recinto??>value=${errors.recinto.valor}</#if> placeholder="Insira a designação do recinto onde decorre a competição" value="${competicao?eval.recinto}" disabled>
+				
+				<#if errors?? && errors.recinto??>
+				<div class="invalid-feedback">
+					${errors.recinto.mensagem}
+				</div>
+				</#if>
+
+			</div>
+
+			<div class="form-group">
+				<label for="modalidade">Modalidade</label>
+				<input type="text" class="form-control" id="modalidade" name="modalidade" placeholder="Insira a modalidade da competicao" value="${competicao?eval.modalidade}" disabled>
+
+			</div>
+
+
+			<div class="form-group">
+				<label for="inicio">Data de início</label>
+				<input type="date" class="form-control <#if errors?? && errors.inicio??>is-invalid</#if>" id="inicio" name="inicio" <#if errors?? && errors.inicio??>value=${errors.inicio.valor}</#if> placeholder="Insira a data de início da competição" value="${competicao?eval.inicio}" disabled>
+				
+				<#if errors?? && errors.inicio??>
+				<div class="invalid-feedback">
+					${errors.inicio.mensagem}
+				</div>
+				</#if>
+
+			</div>
+
+			<#if competicao?eval.vencedora != "--">
+			<div class="form-group">
+				<label for="vencedora">Equipa vencedora</label>
+				<input type="text" class="form-control <#if errors?? && errors.vencedora??>is-invalid</#if>" id="vencedora" name="vencedora" <#if errors?? && errors.vencedora??>value=${errors.vencedora.valor}</#if> placeholder="Insira a equipa vencedora" value="${competicao?eval.vencedora}" disabled>
+				
+				<#if errors?? && errors.vencedora??>
+				<div class="invalid-feedback">
+					${errors.recinto.mensagem}
+				</div>
+				</#if>
+
+			</div>
+			</#if>
+
+			
+			<div class="btn-group">
+				<a class="btn btn-outline-secondary" href="/competicoes/${competicao?eval.id}/edit">Editar</a>
+				<a class="btn btn-outline-secondary" href="/competicoes/${competicao?eval.id}/delete">Remover</a>
+				<a class="btn btn-outline-secondary" href="javascript: history.go(-1)">Voltar</a>
+			</div>
+
+		</form>
+
+		<div class="equipas mt-5"> 
+
+			<h3>Equipas</h3>
+
+			<table class="table table-hover">
+				<thead class="thead-dark">
+					<tr class="row">
+						<th scope="col" class="col-1">#</th>
+						<th scope="col" class="col-3">Nome</th>	
+						<th scope="col" class="col"></th>
+					</tr>
+				</thead>
+				<tbody>
+					<#list equipas?eval as equipa>
+					<tr class="row">
+						<th scope="row" class="col-1">${equipa.id}</th>
+						<td class="col-3">${equipa.nome}</td>
+						<td class="col">
+							
+							<div class="btn-group">
+							<a class="btn btn-outline-secondary" href="/equipas/${equipa.id}">Ver</a>
+							<a class="btn btn-outline-secondary" href="/equipas/${equipa.id}/edit">Editar</a>
+							<a class="btn btn-outline-secondary" href="/competicoes/${competicao?eval.id}/vencedor/${equipa.id}">Vencedor</a>
+							<a class="btn btn-outline-secondary" href="/competicoes/${competicao?eval.id}/deleteEquipa/${equipa.id}">Remover</a>
+							</div>
+
+						</td>
+					</tr>
+					</#list>
+
+				</tbody>
+			</table>
+
+			<a class="btn btn-outline-secondary" href="/competicoes/${competicao?eval.id}/addEquipa">Adicionar</a>
+		</div>
+
+
+	</div>
+</div>
+
+
+<#include "/footer.ftl.html">

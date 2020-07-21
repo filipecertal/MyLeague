@@ -1,0 +1,113 @@
+<#include "/header.ftl.html">
+<#include "/navigation.ftl.html">
+
+<div class="main-page">
+	<div class="jumbotron">
+		<div class="container">
+			<h1>Nova Competição</h1>
+			<p>Gestão de competições desportivas</p>	
+		</div>
+	</div>
+	<div class="container">
+
+		<#if display_errors??>
+			<#assign errors = display_errors?eval>
+		</#if>
+
+		<form method="POST" action="/competicoes/add" class="needs-validation" novalidate>
+
+			<div class="form-group">
+				<label for="nome">Nome da competição</label>
+				<input type="text" class="form-control <#if errors?? && errors.nome??>is-invalid</#if>" id="nome" name="nome" <#if errors?? && errors.designacao??>value=${errors.nome.valor}</#if> placeholder="Insira o nome da competição">
+				
+				<#if errors?? && errors.nome??>
+				<div class="invalid-feedback">
+					${errors.nome.mensagem}
+				</div>
+				</#if>
+
+			</div>
+
+			<div class="form-group">
+				<label for="tipo">Tipo de competição</label>
+
+				<div class="radio">
+					<label class="radio-inline"><input type="radio" value="0" name="tipo" checked>Campeonato</label>
+				</div>
+				<div class="radio">
+					<label class="radio-inline"><input type="radio" value="1" name="tipo">Torneio</label>
+				</div>
+				<div class="radio ">
+					<label class="radio-inline"><input type="radio" value="2" name="tipo">Eliminatória</label>
+				</div>
+				
+
+				<#if errors?? && errors.tipo??>
+				<div class="invalid-feedback">
+					${errors.tipo.mensagem}
+				</div>
+				</#if>
+
+			</div>
+
+
+			<div class="form-group">
+				<label for="recinto">Recinto</label>
+				<input type="text" class="form-control <#if errors?? && errors.recinto??>is-invalid</#if>" id="recinto" name="recinto" <#if errors?? && errors.recinto??>value=${errors.recinto.valor}</#if> placeholder="Insira a designação do recinto onde decorre a competição">
+				
+				<#if errors?? && errors.recinto??>
+				<div class="invalid-feedback">
+					${errors.recinto.mensagem}
+				</div>
+				</#if>
+
+			</div>
+
+
+
+			<div class="form-group">
+				<label for="modalidade">Modalidade</label>
+				<select  class="form-control <#if errors?? && errors.modalidade??>is-invalid</#if>" name="modalidade">
+					<option disabled selected>Selecione uma modalidade</option>
+
+					<#list modalidades?eval as modalidade>
+					<option value="${ modalidade.id }" >${ modalidade.designacao }</option>
+					</#list>
+
+				</select>
+
+				<#if errors?? && errors.modalidade??>
+				<div class="invalid-feedback">
+					${errors.modalidade.mensagem}
+				</div>
+				</#if>
+
+			</div>
+
+
+			<div class="form-group">
+				<label for="inicio">Data de início</label>
+				<input type="date" class="form-control <#if errors?? && errors.inicio??>is-invalid</#if>" id="inicio" name="inicio" <#if errors?? && errors.inicio??>value=${errors.inicio.valor}</#if> placeholder="Insira a data de início da competição">
+				
+				<#if errors?? && errors.inicio??>
+				<div class="invalid-feedback">
+					${errors.inicio.mensagem}
+				</div>
+				</#if>
+
+			</div>
+
+
+			
+			<div class="btn-group">
+				<input type="submit" class="btn btn-outline-secondary" value="Adicionar"></input>
+				<a class="btn btn-outline-secondary" href="javascript: history.go(-1)">Voltar</a>
+			</div>
+
+		</form>
+
+	</div>
+</div>
+
+
+<#include "/footer.ftl.html">
